@@ -18,8 +18,32 @@
         <a id="supportpage-header" href="support.html">Support</a>
       </div>
     </div>
-    <p>Coming Soon.</p>
-    <p>Here's a little survival game and tarot reading for now.</p>
+    <p>Witch Audio is Coming Soon...</p>
+    <p>In the meantime, enjoy our favorite sample pack</p>
+
+    <div class="featured-section" style="background-image: url('assets/cryingcat.jpg')">
+      <div class="card">
+        <h2>Featured Samples</h2>
+        <p>Crying Cat sample pack</p>
+        <button data-href="packs/CryingCat.zip" download>Free Download</button>
+      </div>
+    </div>
+
+    <p>Also, here's a little survival game and tarot reading. Have fun!</p>
+    <div class="cards-container" style="background-image: url('assets/contentbg.jpg')">
+      <div class="card">
+        <h2>Survival Game</h2>
+        <p>Here's a simple survival game:</p>
+        <button onclick="location.href='survive-game.html'">Play Game</button>
+      </div>
+      
+      <div class="card">
+        <h2>Tarot Card Reading</h2>
+        <p>Get your tarot cards read:</p>
+        <button onclick="location.href='tarot.html'">Tarot Reading</button>
+      </div>
+    </div>
+
   </body>
     <style>
       body {
@@ -42,15 +66,15 @@
       }
 
       .logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-  }
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+      }
 
-  .logo img {
-    height: 80px; /* adjust the height as needed */
-  }
+      .logo img {
+        height: 80px; /* adjust the height as needed */
+      }
 
       .header-left {
         display: flex;
@@ -99,6 +123,83 @@
       p {
         font-size: 24px;
       }
+
+      .cards-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+
+    .card {
+      
+      color: #fff;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      width: 300px; 
+      display: inline-block;
+      background-color: #000;
+      font-size: 12px;
+      border: 1px solid #00ff00;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card:hover {
+    border: 1px solid #00ff00;
+    box-shadow: 0px 0px 10px #00ff00;
+  }
+
+    .card h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card button {
+      background-color: #00ff00;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card button:hover {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .featured-section {
+    background-size: cover;
+    background-position: center center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
     </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('button[data-href]').click(function() {
+      window.location.href = $(this).data('href');
+    });
+  });
+  </script>
   
 </html>
