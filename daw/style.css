@@ -1,0 +1,94 @@
+body {
+  font-family: 'Bebas Neue', sans-serif;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #ff9500;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  #sequencer {
+    font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 520px;
+    margin: 20px auto;
+  }
+  
+  .step-row {
+    display: flex;
+  }
+  
+  .step {
+    display: block;
+    height: 50px;
+    width: 50px;
+    background-color: #ff9500;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .step.active {
+    background-color: #c8c7c5;
+  }
+  
+  .step-kick.active {
+    background-color: #ff3b30;
+  }
+  
+  .step-snare.active {
+    background-color: #4cd964;
+  }
+  
+  .step-hihat.active {
+    background-color: #007aff;
+  }
+  
+  #timeline {
+    background-color: #ff9500;
+    height: 20px;
+    margin: 20px 0;
+    position: relative;
+  }
+  
+  #progress {
+    background-color: #000;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+  }
+
+  #controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  button {
+    font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    background-color: #ff9500;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  
+  
+  button:hover {
+    background-color: #000;
+    color: #ff9500;
+  }
+  
