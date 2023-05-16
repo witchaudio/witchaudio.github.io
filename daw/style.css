@@ -268,7 +268,7 @@ body {
     position: absolute;
     top: -30px;
     left:
-  }
+    }
 
   #arrangement {
     display: flex;
@@ -321,5 +321,3 @@ body {
     background-color: #000;
     color: #fff;
   }
-  
-  
