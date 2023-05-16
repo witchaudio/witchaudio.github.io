@@ -15,78 +15,7 @@
           text-align: center;
           
         }
-  
-        #parent {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          width: 700px;
-          background-color: black;
-          font-size: 20px;
-          color: white;
-          padding: 30px;
-          margin: 10px auto;
-        }
-  
-        #button-container {
-          margin-top: 20px;
-          justify-content: center;
-          align-items: center;
-        }
-  
-        button {
-          background-color: green;
-          color: white;
-          border: none;
-          padding: 10px 20px;
-          border-radius: 5px;
-          margin: 5px;
-        }
-
-        #card-and-horoscope-container {
-        margin: 20px auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        }
-  
-        h1 {
-          margin: 0;
-          padding: 10px;
-          ffont-family: 'Bebas Neue', sans-serif;
-          font-size: 3rem;
-        }
-  
-        /* Small card style */
-        .small-card {
-          max-width: 400px;
-          height: auto;
-          margin: 10px;
-        }
-  
-        /* Media query for responsive design */
-        @media (max-width: 768px) {
-          #parent {
-            width: 400%;
-            height: auto;
-            margin: 10px;
-          }
-          /* Small card style for smaller screens */
-          .small-card {
-            width: 400px;
-            height: auto;
-            margin: 10px;
-          }
-        }
-
-        .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .header {
+        .header {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -102,7 +31,7 @@
 
             .header-left h1 {
             color: #00ff00;
-            margin-right: 10px;
+            margin-right: 0px;
             font-size: 60px;
             }
 
@@ -148,7 +77,57 @@
         .logo img {
             height: 80px; /* adjust the height as needed */
         }
-        
+        #parent {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 700px;
+      background-color: black;
+      font-size: 20px;
+      color: white;
+      padding: 30px;
+      margin: 10px auto;
+    }
+
+    #button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: green;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    @media (max-width: 768px) {
+      #parent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+      }
+
+      .small-card {
+        width: 100%;
+        height: auto;
+        margin: 10px;
+      }
+
+      #button-container {
+        flex-direction: column;
+        margin-top: 10px;
+      }
+    }
+
 
       </style>
     <title>Tarot Card</title>
