@@ -162,4 +162,3 @@ pauseButton.addEventListener("click", pause);
 
 let stopButton = document.getElementById("stop");
 stopButton.addEventListener("click", stop);
-
