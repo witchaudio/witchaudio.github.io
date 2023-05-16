@@ -1,0 +1,325 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  height: 100px;
+  }
+
+  .header-left {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  }
+
+  .header-left h1 {
+  font-family: 'Bebas Neue', sans-serif;  
+  color: #00ff00;
+  margin-right: 10px;
+  font-size: 60px;
+  }
+
+  .header-left h1:hover {
+      color: #fff;
+  }
+
+  .header-left a {
+  display: inline-block;
+  padding: 10px;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  margin-right: 10px;
+  font-family: 'Bebas Neue', sans-serif; 
+}
+
+  .header-left a:hover {
+  color: #00ff00;
+  }
+
+#homepage-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  height: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+
+.logo img {
+  height: 80px; /* adjust the height as needed */
+}
+
+body {
+  font-family: 'Bebas Neue', sans-serif;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: green;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  #sequencer {
+    font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 520px;
+    margin: 20px auto;
+  }
+  
+  .step-row {
+    display: flex;
+  }
+  
+  .step {
+    display: block;
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .step.active {
+    background-color: #c8c7c5;
+  }
+  
+  .step-kick.active {
+    background-color: gray;
+  }
+  
+  .step-snare.active {
+    background-color: #4cd964;
+  }
+  
+  .step-hihat.active {
+    background-color: gray;
+  }
+  
+  #timeline {
+    background-color: green;
+    height: 20px;
+    margin: 20px 0;
+    position: relative;
+  }
+  
+  #progress {
+    background-color: #000;
+    color: white;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+  }
+
+  #controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  button {
+    font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    background-color: green;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  
+  
+  button:hover {
+    background-color: #000;
+    color: white;
+  }
+  
+  #arrangement-view {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .arrangement-sequence {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .arrangement-step {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background-color: #c8c7c5;
+  }
+  
+  .loop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 10px;
+  }
+  
+  .loop-cell {
+    background-color: #ddd; /* Default background color for inactive loops */
+    width: 100px;
+    height: 100px;
+    /* Add styling for the loop cells */
+  }
+  
+  .loop-cell.active {
+    background-color: #00ff00; /* Background color for active loops */
+  }
+
+  #metronome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  #metronome-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  #metronome-controls label {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #fff;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+  
+  #metronome-slider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #tempo-slider {
+    width: 200px;
+    height: 5px;
+    background-color: white;
+    color: green;
+    border-radius: 2.5px;
+    appearance: none;
+    outline: none;
+  }
+  
+  #metronome-click:hover {
+    background-color: #c8c7c5;
+    color: black;
+  }
+  
+  #tempo-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  #tempo-slider::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  #tempo-label {
+    font-family: 'Bebas Neue', sans-serif;
+    color: green;
+    font-size: 18px;
+  }
+  
+  #measures {
+    position: absolute;
+    top: -30px;
+    left:
+    }
+
+  #arrangement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+  
+  #arrangement h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: green;
+    margin-bottom: 10px;
+  }
+  
+  #arrangement-view {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .arrangement-sequence {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .arrangement-step {
+    width: 20px;
+    height: 20px;
+  }
+    
+
+  #samples {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .sample {
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: green;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .sample:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  
