@@ -126,6 +126,7 @@ body {
   
   #progress {
     background-color: #000;
+    color: white;
     height: 100%;
     position: absolute;
     top: 0;
@@ -154,6 +155,171 @@ body {
   
   button:hover {
     background-color: #000;
+    color: white;
+  }
+  
+  #arrangement-view {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .arrangement-sequence {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .arrangement-step {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background-color: #c8c7c5;
+  }
+  
+  .loop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 10px;
+  }
+  
+  .loop-cell {
+    background-color: #ddd; /* Default background color for inactive loops */
+    width: 100px;
+    height: 100px;
+    /* Add styling for the loop cells */
+  }
+  
+  .loop-cell.active {
+    background-color: #00ff00; /* Background color for active loops */
+  }
+
+  #metronome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  #metronome-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  #metronome-controls label {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #fff;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+  
+  #metronome-slider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #tempo-slider {
+    width: 200px;
+    height: 5px;
+    background-color: white;
+    color: green;
+    border-radius: 2.5px;
+    appearance: none;
+    outline: none;
+  }
+  
+  #metronome-click:hover {
+    background-color: #c8c7c5;
     color: black;
   }
+  
+  #tempo-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  #tempo-slider::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  #tempo-label {
+    font-family: 'Bebas Neue', sans-serif;
+    color: green;
+    font-size: 18px;
+  }
+  
+  #measures {
+    position: absolute;
+    top: -30px;
+    left:
+  }
+
+  #arrangement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+  
+  #arrangement h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: green;
+    margin-bottom: 10px;
+  }
+  
+  #arrangement-view {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .arrangement-sequence {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .arrangement-step {
+    width: 20px;
+    height: 20px;
+  }
+    
+
+  #samples {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .sample {
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: green;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .sample:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  
   

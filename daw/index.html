@@ -21,9 +21,18 @@
 
 	<title>Cheap DAW</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js" defer></script>
 </head>
 <body>
 	<h1>Cheap DAW</h1>
+	<div id="metronome">
+		<button id="metronome-button">Metronome Click: OFF</button>
+		<br>
+		<input type="range" id="tempo-slider" min="60" max="200" step="1" value="120" oninput="changeTempo(this.value)">
+		<label for="tempo-slider">Tempo</label>
+		<div id="tempo-label">120 BPM</div>
+	  </div>
+	  
 	<div id="sequencer">
         <label for="kick">kick</label>
 		<div class="step-row">
@@ -37,7 +46,7 @@
 			<button class="step"></button>
 		</div>
 		<div class="step-row">
-            <label for="kick">snare</label>
+            <label for="snare">snare</label>
 			<button class="step"></button>
 			<button class="step"></button>
 			<button class="step"></button>
@@ -48,7 +57,7 @@
 			<button class="step"></button>
 		</div>
 		<div class="step-row">
-            <label for="kick">hat1</label>
+            <label for="hihat">hihat</label>
 			<button class="step"></button>
 			<button class="step"></button>
 			<button class="step"></button>
@@ -58,27 +67,40 @@
 			<button class="step"></button>
 			<button class="step"></button>
 		</div>
-		<div class="step-row">
-            <label for="kick">hat2</label>
-			<button class="step"></button>
-			<button class="step"></button>
-			<button class="step"></button>
-			<button class="step"></button>
-			<button class="step"></button>
-			<button class="step"></button>
-			<button class="step"></button>
-			<button class="step"></button>
+
+		<div id="melodic-sequencer">
+			<!-- Melodic elements go here -->
+			
 		</div>
+		
+
 	</div>
 	<div id="timeline">
-		<div id="progress"></div>
+		<div id="progress">
+			<div id="measures"></div>
+		</div>
 	</div>
 	<div id="controls">
-		<button id="play" onclick="play()">Play</button>
-		<button id="pause" onclick="pause()">Pause</button>
+
+		<button id="play-button" onclick="play()">Play</button>
+		<!-- <button id="pause" onclick="pause()">Pause</button> -->
 		<button id="stop" onclick="stop()">Stop</button>
 		<button id="clear" onclick="clearSelection()">Clear</button>
 	  </div>
+	  <div id="arrangement">
+		<h2>Arrangement</h2>
+		<div id="arrangement-view"></div>
+		<div id="arrangement-measures"></div>
+	</div>
+
+	<div id="samples">
+		<button class="sample" onclick="playSample('sounds/cminor7.wav')">Sample 1</button>
+		<button class="sample" onclick="playSample('sounds/gmaj7-chord.wav')">Sample 2</button>
+		<button class="sample" onclick="playSample('sounds/slam.wav')">Sample 3</button>
+	  </div>
+	  
+	  
+	
 
 	<audio id="kick" src="sounds/kick.wav"></audio>
 	<audio id="snare" src="sounds/snare.wav"></audio>
@@ -86,6 +108,7 @@
     <audio id="my-sample-1" src="sounds/kick.wav"></audio>
     <audio id="my-sample-2" src="sounds/snare.wav"></audio>
     <audio id="my-sample-3" src="sounds/closedhat.wav"></audio>
-	<script src="script.js"></script>
+	<audio id="metronome-click" src="sounds/metronome.wav"></audio>
+	
 </body>
 </html>
