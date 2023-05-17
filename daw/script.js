@@ -38,7 +38,7 @@ async function searchSamples() {
   const data = await response.json();
 
   // Process the search results
-  const results = data.results.slice(0, 5);
+  const results = data.results.slice(0, 6);
   displaySearchResults(results);
 }
 
@@ -68,9 +68,35 @@ function displaySearchResults(results) {
 
       // Append the container to the search results
       searchResults.appendChild(sampleContainer);
+
+      const assignKeyDropdown = document.createElement("select");
+      // Add a class or ID for styling
+  assignKeyDropdown.className = "assign-key-dropdown";
+  const optionDefault = document.createElement("option");
+  optionDefault.textContent = "Assign to Key";
+  assignKeyDropdown.appendChild(optionDefault);
+
+  // Create options for each key
+  const keys = ["q", "w", "e", "r", "t", "y"];
+  keys.forEach((key) => {
+    const option = document.createElement("option");
+    option.textContent = key.toUpperCase();
+    option.value = key;
+    assignKeyDropdown.appendChild(option);
+  });
+
+  assignKeyDropdown.addEventListener("change", (event) => {
+    assignSampleToKey(sample.previews['preview-lq-mp3'], event.target.value);
+  });
+
+  sampleContainer.appendChild(assignKeyDropdown);
   });
 }
 
+const keySampleMap = {};
+function assignSampleToKey(sampleUrl, key) {
+  keySampleMap[key] = new Audio(sampleUrl);
+}
 
 
 function previewSample(event) {
@@ -81,6 +107,13 @@ function previewSample(event) {
   }
 }
 
+window.addEventListener("keydown", (event) => {
+  const sampleAudio = keySampleMap[event.key];
+  if (sampleAudio) {
+    sampleAudio.currentTime = 0;
+    sampleAudio.play();
+  }
+});
 
 console.log("After previewSample definition");
 
@@ -304,19 +337,63 @@ steps.forEach((step, index) => {
   });
 });
 
-// let playButton = document.getElementById("play");
-// playButton.addEventListener("click", play);
+window.onload = function() {
+	var sequencerTab = document.getElementById('sequencer-tab');
+	var arrangementTab = document.getElementById('arrangement-tab');
+	var sequencerView = document.getElementById('sequencer-view');
+	var arrangementView = document.getElementById('arrangement-view');
 
-// let pauseButton = document.getElementById("pause");
-// pauseButton.addEventListener("click", pause);
+	sequencerTab.onclick = function() {
+		sequencerView.style.display = 'block';
+		arrangementView.style.display = 'none';
+	}
 
-// let stopButton = document.getElementById("stop");
-// stopButton.addEventListener("click", stop);
+	arrangementTab.onclick = function() {
+		sequencerView.style.display = 'none';
+		arrangementView.style.display = 'block';
+	}
+}
+function switchTo(view) {
+  document.getElementById('sequencer-view').style.display = view === 'sequencer' ? 'block' : 'none';
+  document.getElementById('arrangement-view').style.display = view === 'arrangement' ? 'block' : 'none';
+}
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  const timeline = document.getElementById('timeline');
+  const numMeasures = 2;  // or however many measures you want
+
+  for (let i = 0; i < numMeasures; i++) {
+    const measure = document.createElement('div');
+    measure.classList.add('measure');
+    measure.textContent = i + 1;  // label with measure number
+    timeline.appendChild(measure);
+  }
+});
 
 
-
-
-
+document.addEventListener('keydown', function(event) {
+  switch(event.key) {
+      case 'q':
+          document.getElementById('qwerty-button-1').click();
+          break;
+      case 'w':
+          document.getElementById('qwerty-button-2').click();
+          break;
+      case 'e':
+          document.getElementById('qwerty-button-3').click();
+          break;
+      case 'r':
+          document.getElementById('qwerty-button-4').click();
+          break;
+      case 't':
+          document.getElementById('qwerty-button-5').click();
+          break;
+      case 'y':
+          document.getElementById('qwerty-button-6qq').click();
+          break;    
+      default:
+          break;
+  }
+});
