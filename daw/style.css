@@ -321,5 +321,23 @@ body {
     background-color: #000;
     color: #fff;
   }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
   
+  #search-input {
+    margin-right: 10px;
+  }
   
+  .search-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+

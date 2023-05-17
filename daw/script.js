@@ -1,19 +1,109 @@
-let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-let kick = document.getElementById("kick");
-let snare = document.getElementById("snare");
-let hihat = document.getElementById("hihat");
+// Audio elements
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const kick = document.getElementById("kick");
+const snare = document.getElementById("snare");
+const hihat = document.getElementById("hihat");
 
-let snareSequence = [null, snare, null, snare, null, snare, null, snare];
-let hihatSequence = [hihat, hihat, hihat, hihat, hihat, hihat, hihat, hihat];
-let kickSequence = [kick, null, null, null, kick, null, null, null];
+// Sequencer sequences
+const snareSequence = [null, snare, null, snare, null, snare, null, snare];
+const hihatSequence = [hihat, hihat, hihat, hihat, hihat, hihat, hihat, hihat];
+const kickSequence = [kick, null, null, null, kick, null, null, null];
 
-let steps = document.querySelectorAll(".step");
-let progress = document.getElementById("progress");
+// UI elements
+const steps = document.querySelectorAll(".step");
+const progress = document.getElementById("progress");
+const metronomeButton = document.getElementById("metronome-button");
+
+// Metronome click sound
+const metronomeClick = new Audio("sounds/metronome.wav");
+let metronomeEnabled = false;
+
+// Tempo and play state
+let tempo = 120;
+let isPlaying = false;
 let intervalId;
 let currentStep = 0;
 
-let metronomeClick = new Audio("sounds/metronome.wav");
-let metronomeEnabled = false;
+// Search button event listener
+document.getElementById("search-button").addEventListener("click", searchSamples);
+
+async function searchSamples() {
+  const searchInput = document.getElementById("search-input").value;
+  const apiKey = "5LxMLSJFbXKWmsmtRgYXIaNprrIvk2HyZqK78T7e";
+
+  // Make the API request to freesound.org
+  const response = await fetch(
+    `https://freesound.org/apiv2/search/text/?query=${searchInput}&token=${apiKey}&fields=id,name,previews`
+  );
+  const data = await response.json();
+
+  // Process the search results
+  const results = data.results.slice(0, 5);
+  displaySearchResults(results);
+}
+
+
+function displaySearchResults(results) {
+  // Clear previous results
+  const searchResults = document.getElementById("search-results");
+  searchResults.innerHTML = "";
+
+  // Display new results
+  results.forEach((sample) => {
+      // Create new elements
+      const sampleName = document.createElement("div");
+      sampleName.textContent = sample.name;
+
+      const sampleControl = document.createElement("audio");
+      sampleControl.src = sample.previews['preview-lq-mp3'];
+      sampleControl.controls = true;
+
+      // Create a new container for each sample
+      const sampleContainer = document.createElement("div");
+      sampleContainer.className = "sample-container";
+
+      // Append the sample name and controls to the container
+      sampleContainer.appendChild(sampleName);
+      sampleContainer.appendChild(sampleControl);
+
+      // Append the container to the search results
+      searchResults.appendChild(sampleContainer);
+  });
+}
+
+
+
+function previewSample(event) {
+  var previewUrl = event.target.getAttribute('data-preview');
+  if (previewUrl) {
+    var audio = new Audio(previewUrl);
+    audio.play();
+  }
+}
+
+
+console.log("After previewSample definition");
+
+document.querySelector("#sample-search").addEventListener("click", previewSample);
+
+console.log("After event listener setup");
+
+
+document.getElementById('search-button').addEventListener('click', function() {
+  var searchTerm = document.getElementById('search-input').value;
+  var results = searchSamples(searchTerm);
+  var resultsDiv = document.getElementById('search-results');
+  resultsDiv.innerHTML = '';
+  for (var i = 0; i < results.length; i++) {
+    var button = document.createElement('button');
+    button.textContent = 'Sample ' + (i + 1);
+    button.setAttribute('data-url', results[i]);
+    button.addEventListener('click', previewSample);
+    resultsDiv.appendChild(button);
+  }
+});
+
+
 
 function toggleMetronome() {
   metronomeEnabled = !metronomeEnabled;
@@ -27,9 +117,6 @@ function toggleMetronome() {
 
 // Attach the click event to the metronome button here
 document.getElementById("metronome-button").addEventListener("click", toggleMetronome);
-
-let tempo = 120; // Default tempo
-let isPlaying = false; // Flag to track if the sequence is playing
 
 function changeTempo(newTempo) {
   tempo = newTempo;
@@ -81,14 +168,77 @@ function startSequence() {
   }, stepTime);
 }
 
-function playSample(url) {
-  let sample = new Audio(url);
-  sample.currentTime = 0;
-  sample.play();
+// function playSample(url) {
+//   let sample = new Audio(url);
+//   sample.currentTime = 0;
+//   sample.play();
+// }
+
+// Add event listeners for drag events on sample elements
+let samples = document.querySelectorAll(".sample");
+samples.forEach((sample) => {
+  sample.addEventListener("dragstart", handleDragStart);
+  sample.addEventListener("dragend", handleDragEnd);
+});
+
+// Add event listeners for drag events on sequencer steps
+steps.forEach((step) => {
+  step.addEventListener("dragover", handleDragOver);
+  step.addEventListener("dragenter", handleDragEnter);
+  step.addEventListener("dragleave", handleDragLeave);
+  step.addEventListener("drop", handleDrop);
+});
+
+let draggedSample = null;
+
+function handleDragStart(event) {
+  draggedSample = this;
+  event.dataTransfer.effectAllowed = "move";
+  event.dataTransfer.setData("text/plain", ""); // Required in Firefox for drag to work
 }
 
+function handleDragEnd() {
+  draggedSample = null;
+}
 
-  
+function handleDragOver(event) {
+  event.preventDefault();
+}
+
+function handleDragEnter(event) {
+  event.preventDefault();
+  this.classList.add("drag-over");
+}
+
+function handleDragLeave() {
+  this.classList.remove("drag-over");
+}
+
+function handleDrop(event) {
+  event.preventDefault();
+  this.classList.remove("drag-over");
+
+  // Update the sequencer based on the dropped sample
+  let row = Math.floor(currentStep / 8);
+  let col = currentStep % 8;
+
+  if (row === 0) {
+    kickSequence[col] = draggedSample.id === "kick" ? kick : null;
+  } else if (row === 1) {
+    snareSequence[col] = draggedSample.id === "snare" ? snare : null;
+  } else {
+    hihatSequence[col] = draggedSample.id === "hihat" ? hihat : null;
+  }
+}
+
+// Add event listeners for drag events on sequencer steps
+steps.forEach((step) => {
+  step.addEventListener("dragover", handleDragOver);
+  step.addEventListener("dragenter", handleDragEnter);
+  step.addEventListener("dragleave", handleDragLeave);
+  step.addEventListener("drop", handleDrop);
+});
+
 
 function pause() {
   clearInterval(intervalId);
@@ -154,12 +304,19 @@ steps.forEach((step, index) => {
   });
 });
 
-let playButton = document.getElementById("play");
-playButton.addEventListener("click", play);
+// let playButton = document.getElementById("play");
+// playButton.addEventListener("click", play);
 
-let pauseButton = document.getElementById("pause");
-pauseButton.addEventListener("click", pause);
+// let pauseButton = document.getElementById("pause");
+// pauseButton.addEventListener("click", pause);
 
-let stopButton = document.getElementById("stop");
-stopButton.addEventListener("click", stop);
+// let stopButton = document.getElementById("stop");
+// stopButton.addEventListener("click", stop);
+
+
+
+
+
+
+
 
