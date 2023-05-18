@@ -1,13 +1,15 @@
 // Audio elements
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const kick = document.getElementById("kick");
-const snare = document.getElementById("snare");
-const hihat = document.getElementById("hihat");
+let kick = document.getElementById("kick");
+let snare = document.getElementById("snare");
+let hihat = document.getElementById("hihat");
+
+
 
 // Sequencer sequences
-const snareSequence = [null, snare, null, snare, null, snare, null, snare];
+const snareSequence = [snare, snare, snare, snare, snare, snare, snare, snare];
 const hihatSequence = [hihat, hihat, hihat, hihat, hihat, hihat, hihat, hihat];
-const kickSequence = [kick, null, null, null, kick, null, null, null];
+const kickSequence = [kick, kick, kick, kick, kick, kick, kick, kick];
 
 // UI elements
 const steps = document.querySelectorAll(".step");
@@ -36,6 +38,7 @@ async function searchSamples() {
     `https://freesound.org/apiv2/search/text/?query=${searchInput}&token=${apiKey}&fields=id,name,previews`
   );
   const data = await response.json();
+  // console.log("Search results data:", data);
 
   // Process the search results
   const results = data.results.slice(0, 6);
@@ -50,54 +53,87 @@ function displaySearchResults(results) {
 
   // Display new results
   results.forEach((sample) => {
-      // Create new elements
-      const sampleName = document.createElement("div");
-      sampleName.textContent = sample.name;
+    // Create new elements
+    const sampleName = document.createElement("div");
+    sampleName.textContent = sample.name;
 
-      const sampleControl = document.createElement("audio");
-      sampleControl.src = sample.previews['preview-lq-mp3'];
-      sampleControl.controls = true;
+    const sampleControl = document.createElement("audio");
+    sampleControl.src = sample.previews['preview-lq-mp3'];
+    sampleControl.controls = true;
 
-      // Create a new container for each sample
-      const sampleContainer = document.createElement("div");
-      sampleContainer.className = "sample-container";
+    // Create a new container for each sample
+    const sampleContainer = document.createElement("div");
+    sampleContainer.className = "sample-container";
 
-      // Append the sample name and controls to the container
-      sampleContainer.appendChild(sampleName);
-      sampleContainer.appendChild(sampleControl);
+    // Append the sample name and controls to the container
+    sampleContainer.appendChild(sampleName);
+    sampleContainer.appendChild(sampleControl);
 
-      // Append the container to the search results
-      searchResults.appendChild(sampleContainer);
+    // Append the container to the search results
+    searchResults.appendChild(sampleContainer);
 
-      const assignKeyDropdown = document.createElement("select");
-      // Add a class or ID for styling
-  assignKeyDropdown.className = "assign-key-dropdown";
-  const optionDefault = document.createElement("option");
-  optionDefault.textContent = "Assign to Key";
-  assignKeyDropdown.appendChild(optionDefault);
+    const assignDropdown = document.createElement("select");
+    assignDropdown.className = "assign-key-dropdown";
 
-  // Create options for each key
-  const keys = ["q", "w", "e", "r", "t", "y"];
-  keys.forEach((key) => {
-    const option = document.createElement("option");
-    option.textContent = key.toUpperCase();
-    option.value = key;
-    assignKeyDropdown.appendChild(option);
-  });
+    // Create options for each key and instruments
+    const options = ["Assign to Key", "kick", "snare", "hihat", "q", "w", "e", "r", "t", "y"];
+    options.forEach((optionText) => {
+      const option = document.createElement("option");
+      option.textContent = optionText.toUpperCase();
+      option.value = optionText;
+      assignDropdown.appendChild(option);
+    });
 
-  assignKeyDropdown.addEventListener("change", (event) => {
-    assignSampleToKey(sample.previews['preview-lq-mp3'], event.target.value);
-  });
+    assignDropdown.addEventListener("change", (event) => {
+      assignSample(sample.previews['preview-lq-mp3'], event.target.value);
+    });
 
-  sampleContainer.appendChild(assignKeyDropdown);
+    sampleContainer.appendChild(assignDropdown);
   });
 }
 
 const keySampleMap = {};
-function assignSampleToKey(sampleUrl, key) {
-  keySampleMap[key] = new Audio(sampleUrl);
-}
 
+function assignSample(sampleUrl, assignment) {
+  // console.log("Assigning sample:", sampleUrl, "to:", assignment);
+
+  // console.log('Assignment:', assignment);  // Check the assignment
+
+  let sampleAudio = new Audio(sampleUrl);
+
+  sampleAudio.addEventListener("canplaythrough", function() { 
+    // Wait until the audio is loaded before making assignments
+    // console.log("Audio loaded:", sampleUrl);
+
+    if(assignment === "kick") {
+      kickSequence.fill(null);
+      kick = sampleAudio;
+      kickSequence[0] = kick; 
+      kickSequence[4] = kick;
+      // console.log('Kick sequence:', kickSequence);  // Check the kick sequence
+    } else if(assignment === "snare") {
+      snareSequence.fill(null);
+      snare = sampleAudio;
+      snareSequence[1] = snare;
+      snareSequence[3] = snare;
+      snareSequence[5] = snare;
+      snareSequence[7] = snare;
+      // console.log('Snare sequence:', snareSequence);  // Check the snare sequence
+    } else if(assignment === "hihat") {
+      hihatSequence.fill(null);
+      hihat = sampleAudio;
+      hihatSequence.fill(hihat);
+      // console.log('Hi-hat sequence:', hihatSequence);  // Check the hi-hat sequence
+    } else {
+      keySampleMap[assignment] = sampleAudio;
+      // console.log("Sample assigned to:", assignment);
+    }
+  });
+
+  sampleAudio.onerror = function() {
+    console.log('Error loading audio:', sampleAudio.error);  // Check for errors loading the audio
+  }
+}
 
 function previewSample(event) {
   var previewUrl = event.target.getAttribute('data-preview');
@@ -115,11 +151,11 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-console.log("After previewSample definition");
+// console.log("After previewSample definition");
 
 document.querySelector("#sample-search").addEventListener("click", previewSample);
 
-console.log("After event listener setup");
+// console.log("After event listener setup");
 
 
 document.getElementById('search-button').addEventListener('click', function() {
@@ -135,8 +171,6 @@ document.getElementById('search-button').addEventListener('click', function() {
     resultsDiv.appendChild(button);
   }
 });
-
-
 
 function toggleMetronome() {
   metronomeEnabled = !metronomeEnabled;
@@ -174,38 +208,38 @@ function play() {
 }
 
 function startSequence() {
+  console.log("Starting sequence with tempo:", tempo);
   let stepTime = (60 * 1000) / tempo;
   progress.style.width = 0;
   currentStep = 0;
   intervalId = setInterval(() => {
+    // console.log("Current step:", currentStep);
     if (snareSequence[currentStep] && steps[currentStep + 8].classList.contains("active")) {
-      snareSequence[currentStep].currentTime = 0;
-      snareSequence[currentStep].play();
+      // console.log("Playing snare sound on step:", currentStep);
+      let snareSound = new Audio(snareSequence[currentStep].src);
+      snareSound.play();
     }
     if (hihatSequence[currentStep] && steps[currentStep + 16].classList.contains("active")) {
-      hihatSequence[currentStep].currentTime = 0;
-      hihatSequence[currentStep].play();
+      // console.log("Playing hihat sound on step:", currentStep);
+      let hihatSound = new Audio(hihatSequence[currentStep].src);
+      hihatSound.play();
     }
     if (kickSequence[currentStep] && steps[currentStep].classList.contains("active")) {
-      kickSequence[currentStep].currentTime = 0;
-      kickSequence[currentStep].play();
+      // console.log("Playing kick sound on step:", currentStep);
+      let kickSound = new Audio(kickSequence[currentStep].src);
+      kickSound.play();
     }
 
     if (metronomeEnabled) {
-      metronomeClick.currentTime = 0;
-      metronomeClick.play();
+      // console.log("Playing metronome sound on step:", currentStep);
+      let metronomeSound = new Audio(metronomeClick.src);
+      metronomeSound.play();
     }
 
     currentStep = (currentStep + 1) % snareSequence.length;
     progress.style.width = ((currentStep + 1) / snareSequence.length * 100) + "%";
   }, stepTime);
 }
-
-// function playSample(url) {
-//   let sample = new Audio(url);
-//   sample.currentTime = 0;
-//   sample.play();
-// }
 
 // Add event listeners for drag events on sample elements
 let samples = document.querySelectorAll(".sample");
@@ -282,26 +316,34 @@ function stop() {
   clearInterval(intervalId);
   currentStep = 0;
   progress.style.width = 0;
-  snareSequence.forEach((step) => {
+
+  // Reload snare samples
+  snareSequence.forEach((step, index) => {
     if (step) {
-      step.pause();
-      step.currentTime = 0;
+      let snareSound = new Audio(step.src);
+      snareSequence[index] = snareSound;
     }
   });
-  hihatSequence.forEach((step) => {
+  
+  // Reload hihat samples
+  hihatSequence.forEach((step, index) => {
     if (step) {
-      step.pause();
-      step.currentTime = 0;
+      let hihatSound = new Audio(step.src);
+      hihatSequence[index] = hihatSound;
     }
   });
-  kickSequence.forEach((step) => {
+  
+  // Reload kick samples
+  kickSequence.forEach((step, index) => {
     if (step) {
-      step.pause();
-      step.currentTime = 0;
+      let kickSound = new Audio(step.src);
+      kickSequence[index] = kickSound;
     }
   });
+
   isPlaying = false; // Set the flag to indicate that the sequence is not playing
 }
+
 
 function clearSelection() {
   steps.forEach((step) => {
@@ -335,7 +377,48 @@ steps.forEach((step, index) => {
       }
     }
   });
-});
+}); 
+
+function reloadSamples() {
+  // Reload snare samples
+  snareSequence.forEach((step, index) => {
+    if (step) {
+      let snareSound = new Audio(step.src);
+      snareSequence[index] = snareSound;
+      console.log("Snare sample reloaded at index:", index);  // Add console log here
+    }
+  });
+  
+  // Reload hihat samples
+  hihatSequence.forEach((step, index) => {
+    if (step) {
+      let hihatSound = new Audio(step.src);
+      hihatSequence[index] = hihatSound;
+      console.log("Hihat sample reloaded at index:", index);  // Add console log here
+    }
+  });
+  
+  // Reload kick samples
+  kickSequence.forEach((step, index) => {
+    if (step) {
+      let kickSound = new Audio(step.src);
+      kickSequence[index] = kickSound;
+      console.log("Kick sample reloaded at index:", index);  // Add console log here
+    }
+  });
+
+  console.log("All samples reloaded");  // Final log to confirm all samples were reloaded
+}
+
+
+// Add a button to reload the samples
+const reloadButton = document.createElement("reload");
+// reloadButton.textContent = "Reload Samples";
+document.body.appendChild(reloadButton);
+
+// Add event listener
+reloadButton.addEventListener("click", reloadSamples);
+
 
 window.onload = function() {
 	var sequencerTab = document.getElementById('sequencer-tab');
