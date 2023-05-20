@@ -43,7 +43,7 @@ function displaySearchResults(results) {
   const searchResults = document.getElementById("search-results");
   searchResults.innerHTML = "";
 
-  const options = ["Assign to Key", "kick", "snare", "hihat", "q", "w", "e", "r", "t", "y"];
+  const options = ["Assign to Key", "Track 1", "Track 2", "Track 3", "kick", "snare", "hihat", "q", "w", "e", "r", "t", "y"];
 
   results.forEach((sample) => {
     const assignDropdown = el('select', {className: 'assign-key-dropdown'},
@@ -55,13 +55,17 @@ function displaySearchResults(results) {
     });
 
     const sampleContainer = el('div', 
-      {className: 'sample-container', draggable: true, ondragstart: (event) => {
-        event.dataTransfer.setData('text/plain', sample.previews['preview-lq-mp3']);
-      }}, [
-        el('div', {textContent: sample.name}),
-        el('audio', {src: sample.previews['preview-lq-mp3'], controls: true}),
-        assignDropdown
-      ]);
+  {className: 'sample-container', draggable: true, ondragstart: (event) => {
+    event.dataTransfer.setData('text/plain', JSON.stringify({
+      url: sample.previews['preview-lq-mp3'],
+      name: sample.name
+    }));
+  }}, [
+    el('div', {textContent: sample.name}),
+    el('audio', {src: sample.previews['preview-lq-mp3'], controls: true}),
+    assignDropdown
+  ]);
+
 
     searchResults.appendChild(sampleContainer);
   });
@@ -86,15 +90,19 @@ function assignSample(sampleUrl, assignment) {
           hihat = sampleAudio;
           hihatSequence.fill(hihat);
       } else if (assignment.startsWith('Track ')) {
-          let trackNumber = parseInt(assignment.split(' ')[1]) - 1;
-          tracks[trackNumber].push(sampleAudio);
+        let trackNumber = parseInt(assignment.split(' ')[1]) - 1;
+        if(!isNaN(trackNumber)) {
+          tracks[trackNumber].fill(null);
+          tracks[trackNumber][0] = sampleAudio;
+        } 
       } else {
-          keySampleMap[assignment] = sampleAudio.cloneNode();
+        keySampleMap[assignment] = sampleAudio.cloneNode();
       }
   });
 
   sampleAudio.onerror = () => console.log('Error loading audio:', sampleAudio.error);
 }
+
 
 const previewSample = (event) => {
   const previewUrl = event.target.getAttribute('data-preview');
@@ -162,53 +170,36 @@ function changeTempo(newTempo) {
   }
 }
 
-const play = () => {
-  if (isPlaying || audioCtx.state !== "suspended") {
-    startSequence();
-  } else {
-    audioCtx.resume().then(startSequence);
-  }
-}
-
-const playTrack = (trackNumberStr) => {
-  let trackNumber = parseInt(trackNumberStr) - 1;
-  
-  if (isNaN(trackNumber) || trackNumber < 0 || trackNumber >= tracks.length) {
-    return console.error(`Invalid track number: ${trackNumberStr}`);
-  }
-
-  let now = audioCtx.currentTime;
-  tracks[trackNumber].forEach((sample, index) => {
-      let source = audioCtx.createBufferSource();
-      source.buffer = sample;
-      source.connect(audioCtx.destination);
-      source.start(now + index * 0.5); // Change 0.5 to the desired time between samples
-  });
-}
-
 const startSequence = () => {
-  console.log("Starting sequence with tempo:", tempo);
   let stepTime = (60 * 1000) / tempo;
   progress.style.width = 0;
   currentStep = 0;
 
   const playSound = (sequence, step) => {
-    if(sequence[step] && steps[step + (sequence == snareSequence ? 8 : sequence == hihatSequence ? 16 : 0)].classList.contains("active")){
-      let sound = new Audio(sequence[step].src);
-      sound.play();
-    }
+      if(sequence[step] && steps[step + (sequence == snareSequence ? 8 : sequence == hihatSequence ? 16 : 0)].classList.contains("active")){
+          let sound = new Audio(sequence[step].src);
+          sound.play();
+      }
   };
 
   intervalId = setInterval(() => {
-    [snareSequence, hihatSequence, kickSequence].forEach(seq => playSound(seq, currentStep));
+      [snareSequence, hihatSequence, kickSequence].forEach(seq => playSound(seq, currentStep));
 
-    if (metronomeEnabled) {
-      let metronomeSound = new Audio(metronomeClick.src);
-      metronomeSound.play();
-    }
+      tracks.forEach(track => {
+        let sample = track[currentStep];
+        if(sample) {
+          let sound = new Audio(sample.src);
+          sound.play();
+        }
+      });
 
-    currentStep = (currentStep + 1) % snareSequence.length;
-    progress.style.width = ((currentStep + 1) / snareSequence.length * 100) + "%";
+      if (metronomeEnabled) {
+          let metronomeSound = new Audio(metronomeClick.src);
+          metronomeSound.play();
+      } 
+
+      currentStep = (currentStep + 1) % snareSequence.length;
+      progress.style.width = ((currentStep + 1) / snareSequence.length * 100) + "%";
   }, stepTime);
 }
 
@@ -221,55 +212,65 @@ samples.forEach((sample) => {
 
 let draggedSample = null;
 
-// Common handler for drag events
-const handleDragEvent = (event, callback) => {
-  event.preventDefault();
-  callback && callback(event);
+function addSampleToSequence(sequence, step) {
+  let sample = sequence[step];
+  if (sample) {
+      let sound = new Audio(sample.src);
+      sound.play();
+  }
+}
+
+const soloTrack = (trackNumberStr) => {
+  let trackNumber = parseInt(trackNumberStr) - 1;
+
+  if (isNaN(trackNumber) || trackNumber < 0 || trackNumber >= tracks.length) {
+    return console.error(`Invalid track number: ${trackNumberStr}`);
+  }
+
+  // Mute all other tracks
+  tracks.forEach((track, index) => {
+    if (index !== trackNumber) {
+      track.forEach(sample => sample.muted = true);
+    } else {
+      track.forEach(sample => sample.muted = false);
+    }
+  });
+}
+
+const muteTrack = (trackNumberStr) => {
+  let trackNumber = parseInt(trackNumberStr) - 1;
+
+  if (isNaN(trackNumber) || trackNumber < 0 || trackNumber >= tracks.length) {
+    return console.error(`Invalid track number: ${trackNumberStr}`);
+  }
+
+  // Mute the specified track
+  tracks[trackNumber].forEach(sample => sample.muted = true);
+}
+
+const play = () => {
+  if (isPlaying) return;
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume().then(startSequence);
+  } else {
+    startSequence();
+  }
+}
+
+const playTrack = (track, step) => {
+  let sample = track[step];
+  if (sample) {
+    let sound = new Audio(sample.src);
+    sound.play();
+  }
 };
-
-steps.forEach((step) => {
-  step.addEventListener("dragover", event => handleDragEvent(event));
-  step.addEventListener("dragenter", event => handleDragEvent(event, () => step.classList.add("drag-over")));
-  step.addEventListener("dragleave", () => step.classList.remove("drag-over"));
-  step.addEventListener("drop", event => handleDragEvent(event, () => handleDrop(step)));
-});
-
-function handleDragStart(event) {
-  draggedSample = this;
-  event.dataTransfer.effectAllowed = "move";
-  event.dataTransfer.setData("text/plain", ""); // Required in Firefox for drag to work
-}
-
-function handleDragEnd() {
-  draggedSample = null;
-}
-
-function handleDrop(step) {
-  step.classList.remove("drag-over");
-
-  const [kickSequence, snareSequence, hihatSequence] = [kick, snare, hihat].map(sample => draggedSample.id === sample.id ? sample : null);
-  const row = Math.floor(currentStep / 8);
-  const col = currentStep % 8;
-  
-  if(row === 0) kickSequence[col] = kickSequence;
-  if(row === 1) snareSequence[col] = snareSequence;
-  if(row > 1) hihatSequence[col] = hihatSequence;
-}
 
 function stop() {
   clearInterval(intervalId);
   currentStep = 0;
   progress.style.width = 0;
   isPlaying = false;
-
-  const reloadSamples = (sequence) => {
-    sequence.forEach((step, index) => {
-      if (step) sequence[index] = new Audio(step.src);
-    });
-  };
-
-  // Reload all samples
-  ['snareSequence', 'hihatSequence', 'kickSequence'].forEach(seq => reloadSamples(window[seq]));
+  audioCtx.suspend();
 }
 
 function clearSelection() {
@@ -358,8 +359,10 @@ const allowDrop = event => event.preventDefault();
 
 const dropSample = event => {
   event.preventDefault();
-  const sampleUrl = event.dataTransfer.getData('text');
-  assignSample(sampleUrl, event.currentTarget.id);
+  const sampleData = JSON.parse(event.dataTransfer.getData('text'));
+  const trackElement = event.currentTarget;
+  trackElement.querySelector(".sample-name").textContent = sampleData.name;
+  assignSample(sampleData.url, trackElement.id);
 };
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -367,4 +370,8 @@ window.addEventListener('DOMContentLoaded', () => {
     track.ondragover = allowDrop;
     track.ondrop = dropSample;
   });
+});
+
+window.addEventListener("click", () => {
+  if (audioCtx.state === "suspended") audioCtx.resume();
 });

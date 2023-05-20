@@ -465,7 +465,6 @@ body {
   width: 20%;  /* Adjusted to allow for four beats per bar */
   height: 20px;
   border: 1px solid black;
-  cursor: pointer;
   border-radius: 25px;
   margin: 2px; /* Adding margin to provide some space between beats */
 }

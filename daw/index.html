@@ -4,7 +4,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.4/Pizzicato.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/nexusui/2.0.1/NexusUI.js"></script>
+
 
 	<title>Cheap DAW</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -98,8 +98,9 @@
 				<div id="track-container">
 					<div id="track1" class="track">
 						<div class="track-title">Track 1</div>
-						<button class="track-play" data-track="1" onclick="playTrack(this.dataset.track)">Play</button>
-    					<button class="track-stop" data-track="1" onclick="stopTrack(this.dataset.track)">Stop</button>
+						<button class="track-solo" data-track="1" onclick="soloTrack(this.dataset.track)">Solo</button>
+						<button class="track-mute" data-track="1" onclick="muteTrack(this.dataset.track)">Mute</button>
+						<div class="sample-name"></div>
 						<div class="bar">
 						  <div class="beat"></div>
 						  <div class="beat"></div>
@@ -114,10 +115,11 @@
 						</div>
 					  </div>
 					  
-					  <div id="track1" class="track">
+					  <div id="track2" class="track">
 						<div class="track-title">Track 2</div>
-						<button class="track-play" data-track="2" onclick="playTrack(this.dataset.track)">Play</button>
-    					<button class="track-stop" data-track="2" onclick="stopTrack(this.dataset.track)">Stop</button>
+						<button class="track-solo" data-track="2" onclick="soloTrack(this.dataset.track)">Solo</button>
+						<button class="track-mute" data-track="2" onclick="muteTrack(this.dataset.track)">Mute</button>
+						<div class="sample-name"></div>
 						<div class="bar">
 						  <div class="beat"></div>
 						  <div class="beat"></div>
@@ -132,10 +134,11 @@
 						</div>
 					  </div>
 					  
-					  <div id="track1" class="track">
+					  <div id="track3" class="track">
 						<div class="track-title">Track 3</div>
-						<button class="track-play" data-track="3" onclick="playTrack(this.dataset.track)">Play</button>
-    					<button class="track-stop" data-track="3" onclick="stopTrack(this.dataset.track)">Stop</button>
+						<button class="track-solo" data-track="3" onclick="soloTrack(this.dataset.track)">Solo</button>
+						<button class="track-mute" data-track="3" onclick="muteTrack(this.dataset.track)">Mute</button>
+						<div class="sample-name"></div>
 						<div class="bar">
 						  <div class="beat"></div>
 						  <div class="beat"></div>
