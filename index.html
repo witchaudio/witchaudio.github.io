@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A place for my weird ideas to exist">
+    <meta name="keywords" content="personal, lo-fi, programming, art">
+    <meta name="author" content="witch-audio">
+    <title> witch audio </title>
+    <link rel="icon" href="./assets/witch2.jpg">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="window.js"></script>
+</head>
+ 
+<body>
+    <div id="loader" style="display:none;">
+        <h1 class="glitch" data-text="waOS">Witch Audio</h1>
+        <h2 class="glitch" data-text="text">Placeholder text</h2>
+    </div>
+    
+    <div id="scanlines"></div>
+    
+    <div id="infobar">
+        <div id="infomenu">Witch Audio:/ </div>
+        <div id="infopath">[ C:/V1.0.0/witch-audio/||\||\ ]</div>
+    </div>
+    
+    <div id="page" style="background-image: url('./assets/rain-bg.gif');">
+        <div class="icon-line" id="icon-line-0">
+            <div class="dLink" id="dLink-About">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/trash-empty-svgrepo-com.svg' );"></div>
+                    About
+                </button>
+            </div>
+            <div class="dLink" id="dLink-Blog">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/audio.svg' );"></div>
+                    DAW
+                </button>
+            </div>
+            <div class="dLink" id="dLink-Login">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/mouse-svgrepo-com.svg' );"></div>
+                    Notes
+                </button>
+            </div>
+            <div class="dLink" id="dLink-Music">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/input-gaming-svgrepo-com.svg' );"></div>
+                    Game
+                </button>
+            </div>
+            <div class="dLink" id="dLink-Tarot">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/tarot.png' );"></div>
+                    Tarot
+                </button>
+            </div>
+        </div> <!-- LINE 0 -->
+        <div class="icon-line" id="icon-line-1">
+            <div class="dLink"></div>
+        </div> <!-- LINE 1 -->
+    </div>
+    
+    <div id="window-container">
+    <div class="window ui-draggable" id="win-id-0">
+        <div class="win-bar">
+            <button class="win-close button"></button>
+            <button class="win-full button"></button>
+            <button class="win-min button"></button>
+            <button class="win-upd button"></button>
+            <div class="win-text">V1.0.0 witch audio |\||\</div>
+        </div>
+        <div class="win-content">
+            <iframe class="win-frame" id="win-frame-id-" src="release-notes.html?id=0"></iframe>
+        </div>
+        <div class="resizer"></div>
+    </div>
+</div>
+    
+    <!-------------------------------------TECH-------------------------------------------->
+  
+    <div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div>
+   
+    <script>
+        $(document).ready(function() {
+            $('button[data-href]').click(function() {
+                window.location.href = $(this).data('href');
+            });
+        });
+    </script>
+</body>
+</html>

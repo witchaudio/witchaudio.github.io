@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survive Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  body {
+    background-color: black;
+    font-family: 'Special Elite', cursive;
+    color: green;
+    
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    height: 100px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-left h1 {
+    color: #00ff00;
+    margin-right: 10px;
+    font-size: 60px;
+  }
+
+  .header-left h1:hover {
+    color: #fff;
+  }
+
+  .header-left a {
+    display: inline-block;
+    padding: 10px;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+
+  .header-left a:hover {
+    color: #00ff00;
+  }
+
+  .logo {
+    padding: 10px;
+  }
+
+  .logo img {
+    height: 80px;
+  }
+
+  h1 {
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #00ff00;
+    text-shadow: 1px 1px #000;
+    text-align: center;
+    border-bottom: 1px solid #00ff00;
+    padding-bottom: 5px;
+  }
+
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .game-inputs {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-inputs label {
+    margin-bottom: 0.5rem;
+  }
+
+  .game-inputs input {
+    width: 100%;
+    background-color: black;
+    color: green;
+    font-family: monospace;
+    border: none;
+    border-bottom: 2px solid white;
+    padding: 0.5rem;
+    box-shadow: 0px 0px 10px white;
+  }
+
+  #console {
+    width: 80%;
+    height: 70%;
+    padding: 1rem;
+    background-color: black;
+    border: 2px solid white;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 10px white;
+    font-family: monospace;
+    font-size: 1.2rem;
+    white-space: pre-wrap;
+  }
+
+  #console p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+  }
+
+  #console p:first-child::before {
+    content: '>';
+    animation: consoleCursor 1s infinite;
+    margin-right: 0.5rem;
+  }
+
+  .game-buttons button {
+    border: none;
+    background-color: black;
+    color: green;
+    font-family: monospace;
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0px 0px 10px white;
+    cursor: pointer;
+  }
+
+  .game-buttons button:hover {
+    background-color: green;
+    color: black;
+  }
+
+  .add-player {
+    border: 1px solid white;
+    background-color: black;
+    color: green;
+    font-family: monospace;
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0px 0px 10px white;
+    cursor: pointer;
+  }
+
+  .add-player:hover {
+    background-color: white;
+    color: black;
+  }
+
+  @keyframes consoleCursor {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes typing {
+    from {
+      width: 0
+    }
+    to {
+      width: 100%
+    }
+  }
+
+  .typing {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid green;
+    animation: typing 1s steps(25) 0s 1 normal both;
+  }
+
+  .footer {
+    background-color: rgb(0, 0, 0);
+    color: green;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Special Elite', cursive;
+  }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .container > * {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <img src="assets/witchaudio.png" alt="Witch Audio Logo">
+  </div>
+  <div class="header-left">
+    <h1>Witch Audio</h1>
+    <a id="homepage-header" href="https://witchaudio.github.io/index.html">Home</a>
+    <a id="musicpage-header" href="music.html">Music</a>
+    <a id="gamespage-header" href="games.html">Games</a>
+    <a id="supportpage-header" href="support.html">Support</a>
+  </div>
+</div>
+
+<div class="container">
+  <!-- <h1>SURVIVE</h1> -->
+  <pre>     _____ _    _ _______      _________      ________ 
+    / ____| |  | |  __ \ \    / /_   _\ \    / /  ____|
+   | (___ | |  | | |__) \ \  / /  | |  \ \  / /| |__   
+    \___ \| |  | |  _  / \ \/ /   | |   \ \/ / |  __|  
+    ____) | |__| | | \ \  \  /   _| |_   \  /  | |____ 
+   |_____/ \____/|_|  \_\  \/   |_____|   \/   |______|
+   </pre>
+  <div class="game-inputs">
+    <label style="color: green;" for="playerName">Enter player name:</label>
+    <input type="text" id="playerName" name="playerName">
+  </div>
+  <br>
+  <button onclick="addPlayer()" class="add-player">Add players</button>
+  <br>
+  <div class="game-buttons">
+    <button onclick="setupGame()">Click to play! &#128525</button>
+    <br>
+    <button onclick="restartGame()">Restart Game &#128528</button>
+  </div>
+  <pre id="setupGame"></pre>
+</div>
+
+<div class="footer">Written by Rachel Larralde 2023©</div>
+    <script>
+     const players = [];
+
+function displayTypingText(text, element) {
+  const characters = text.split('');
+  let i = 0;
+
+  function type() {
+    if (i < characters.length) {
+      element.innerHTML += characters[i];
+      i++;
+      setTimeout(type, 100);
+    }
+  }
+
+  type();
+}
+
+function addPlayer() {
+  const playerName = document.getElementById("playerName").value;
+  const newPlayer = { name: playerName, alive: true };
+  players.push(newPlayer);
+  const newLine = document.createElement('p');
+  document.getElementById("setupGame").appendChild(newLine);
+  displayTypingText(`${playerName} has joined the game`, newLine);
+}
+
+async function setupGame() {
+  const names = ["Elon Musk", "Ghandi", "The Horse", "Obama"].sort(() => Math.random() - 0.5);
+  const weapons = ["a knife 🔪", "a gun 🔫", "a sword 🗡️", "a boat 🚤"].sort(() => Math.random() - 0.5);
+  const actions = ["has sex with ", "kill ", "joins ", "attacks "].sort(() => Math.random() - 0.5);
+
+  players.push(...names.map(name => ({ name, alive: true })));
+
+  while (players.filter(p => p.alive).length > 1) {
+    const alivePlayers = players.filter(p => p.alive);
+    const playerIndex = Math.floor(Math.random() * alivePlayers.length);
+    const player = alivePlayers[playerIndex];
+
+    const actionIndex = Math.floor(Math.random() * actions.length);
+    const action = actions[actionIndex];
+    const alivePlayersWithoutCurrent = alivePlayers.filter(p => p.name !== player.name);
+    const targetIndex = Math.floor(Math.random() * alivePlayersWithoutCurrent.length);
+    const target = alivePlayersWithoutCurrent[targetIndex];
+
+    const newLine = document.createElement('p');
+    document.getElementById("setupGame").appendChild(newLine);
+
+    switch (action) {
+      case "kill ":
+        if (target.alive) {
+          target.alive = false;
+          await new Promise(resolve => {
+            setTimeout(() => {
+              displayTypingText(`${player.name} kills ${target.name} with ${weapons[Math.floor(Math.random() * weapons.length)]}`, newLine);
+              resolve();
+            }, 1000); // Delay between each game result
+          });
+          if (players.filter(p => p.alive).length === 1) {
+            break;
+          }
+          players.splice(players.indexOf(target), 1);
+        } else {
+          displayTypingText(`${player.name} tried to kill ${target.name}, but they were already dead`, newLine);
+        }
+        break;
+      case "attacks ":
+        await new Promise(resolve => {
+          setTimeout(() => {
+            displayTypingText(`${player.name} ${action} ${target.name} with ${weapons[Math.floor(Math.random() * weapons.length)]}`, newLine);
+            resolve();
+          }, 1000); // Delay between each game result
+        });
+        break;
+      default:
+        await new Promise(resolve => {
+          setTimeout(() => {
+            displayTypingText(`${player.name} ${action} ${target.name}`, newLine);
+            resolve();
+          }, 1000); // Delay between each game result
+        });
+    }
+  }
+
+  const winner = players.find(p => p.alive);
+  const newLine = document.createElement('p');
+  document.getElementById("setupGame").appendChild(newLine);
+  displayTypingText(`${winner.name} wins! 🏆`, newLine);
+}
+
+
+function restartGame() {
+  document.getElementById("setupGame").innerHTML = "";
+  document.getElementById("playerName").value = "";
+}
+
+      </script>
+
+</body>
+</html>
