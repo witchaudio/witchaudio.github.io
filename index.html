@@ -1,205 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <title>Witch Audio</title>
-  </head>
-  <body>   
-    <div class="header">
-      <div class="logo">
-        <img src="assets/witchaudio.png" alt="Witch Audio Logo">
-      </div>
-      <div class="header-left">
-        <h1>Witch Audio</h1> 
-        <a id="musicpage-header" href="music.html">Music</a>
-        <a id="gamespage-header" href="games.html">Games</a>
-        <a id="supportpage-header" href="support.html">Support</a>
-      </div>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A place for my weird ideas to exist">
+    <meta name="keywords" content="personal, lo-fi, programming, art">
+    <meta name="author" content="witch-audio">
+    <title> witch audio </title>
+    <link rel="icon" href="./assets/witch2.jpg">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="window.js"></script>
+</head>
+ 
+<body>
+    <div id="loader" style="display:none;">
+        <h1 class="glitch" data-text="waOS">Witch Audio</h1>
+        <h2 class="glitch" data-text="text">Placeholder text</h2>
     </div>
-    <p>Witch Audio is Coming Soon...</p>
-    <p>In the meantime, enjoy our favorite sample pack</p>
-
-    <div class="featured-section" style="background-image: url('assets/cryingcat.jpg')">
-      <div class="card">
-        <h2>Featured Samples</h2>
-        <p>Crying Cat sample pack</p>
-        <button onclick="window.location.href='https://drive.google.com/file/d/1MRbeKMhcLRcsUFynhgIUEPqNchF6AAoA/view?usp=sharing'">Free Download</button>
-      </div>
+    
+    <div id="scanlines"></div>
+    
+    <div id="infobar">
+        <div id="infomenu">Witch Audio:/ </div>
+        <div id="infopath">[ C:/V1.0.0/witch-audio/||\||\ ]</div>
     </div>
-
-    <p>Also, here's a little survival game and tarot reading. Have fun!</p>
-    <div class="cards-container" style="background-image: url('assets/contentbg.jpg')">
-      <div class="card">
-        <h2>Survival Game</h2>
-        <p>Here's a simple survival game:</p>
-        <button onclick="location.href='survive-game.html'">Play Game</button>
-      </div>
-      
-      <div class="card">
-        <h2>Tarot Card Reading</h2>
-        <p>Get your tarot cards read:</p>
-        <button onclick="location.href='tarot.html'">Tarot Reading</button>
-      </div>
+    
+    <div id="page" style="background-image: url('./assets/rain-bg.gif');">
+        <div class="icon-line" id="icon-line-0">
+            <div class="dLink" id="dLink-About">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/trash-empty-svgrepo-com.svg' );"></div>
+                    About
+                </button>
+            </div>
+            <div class="dLink" id="dLink-Blog">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/audio.svg' );"></div>
+                    DAW
+                </button>
+            </div>
+            <div class="dLink" id="dLink-Login">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/mouse-svgrepo-com.svg' );"></div>
+                    Notes
+                </button>
+            </div>
+            <div class="dLink" id="dLink-Music">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/input-gaming-svgrepo-com.svg' );"></div>
+                    Game
+                </button>
+            </div>
+            <div class="dLink" id="dLink-Tarot">
+                <button class="button">
+                    <div class="dIcon" style="background-image: url('./assets/tarot.png' );"></div>
+                    Tarot
+                </button>
+            </div>
+        </div> <!-- LINE 0 -->
+        <div class="icon-line" id="icon-line-1">
+            <div class="dLink"></div>
+        </div> <!-- LINE 1 -->
     </div>
-
-  </body>
-    <style>
-      body {
-        background-color: #000;
-        color: #fff;
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 12px;
-        line-height: 1.2;
-        text-align: center;
-        background-image: url(assets/bg.gif);
-        background-repeat: repeat;
-      }
-      .header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #000;
-        height: 100px;
-        position: relative;
-      }
-
-      .logo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px;
-      }
-
-      .logo img {
-        height: 80px; /* adjust the height as needed */
-      }
-
-      .header-left {
-        display: flex;
-        align-items: center;
-        margin-right: 10px;
-      }
-
-      .header-left h1 {
-        color: #00ff00;
-        margin-right: 10px;
-        font-size: 60px;
-      }
-
-      .header-left h1:hover {
-        color: #fff;
-      }
-
-      .header-left a {
-        display: inline-block;
-        padding: 10px;
-        color: #fff;
-        font-size: 18px;
-        text-decoration: none;
-        margin-right: 10px;
-      }
-
-      .header-left a:hover {
-        color: #00ff00;
-      }
-
-      #homepage-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #000;
-        height: 100px;
-        font-size: 16px;
-        font-weight: bold;
-        text-decoration: none;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 0 auto;
-      }
-
-      p {
-        font-size: 24px;
-      }
-
-      .cards-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 50px;
-    }
-
-    .card {
-      
-      color: #fff;
-      padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      width: 300px; 
-      display: inline-block;
-      background-color: #000;
-      font-size: 12px;
-      border: 1px solid #00ff00;
-      text-decoration: none;
-      margin-top: 20px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .card:hover {
-    border: 1px solid #00ff00;
-    box-shadow: 0px 0px 10px #00ff00;
-  }
-
-    .card h2 {
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .card button {
-      background-color: #00ff00;
-      color: #000;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .card button:hover {
-      background-color: #000;
-      color: #fff;
-    }
-
-    .featured-section {
-    background-size: cover;
-    background-position: center center;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-    </style>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-  $(document).ready(function() {
-    $('button[data-href]').click(function() {
-      window.location.href = $(this).data('href');
-    });
-  });
-  </script>
+    
+    <div id="window-container">
+    <div class="window ui-draggable" id="win-id-0">
+        <div class="win-bar">
+            <button class="win-close button"></button>
+            <button class="win-full button"></button>
+            <button class="win-min button"></button>
+            <button class="win-upd button"></button>
+            <div class="win-text">V1.0.0 witch audio |\||\</div>
+        </div>
+        <div class="win-content">
+            <iframe class="win-frame" id="win-frame-id-" src="release-notes.html?id=0"></iframe>
+        </div>
+        <div class="resizer"></div>
+    </div>
+</div>
+    
+    <!-------------------------------------TECH-------------------------------------------->
   
+    <div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div>
+   
+    <script>
+        $(document).ready(function() {
+            $('button[data-href]').click(function() {
+                window.location.href = $(this).data('href');
+            });
+        });
+    </script>
+</body>
 </html>

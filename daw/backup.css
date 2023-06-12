@@ -1,0 +1,475 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  height: 100px;
+  }
+
+  .header-left {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  }
+
+  .header-left h1 {
+  font-family: 'Bebas Neue', sans-serif;  
+  color: #00ff00;
+  margin-right: 10px;
+  font-size: 60px;
+  }
+
+  .header-left h1:hover {
+      color: #fff;
+  }
+
+  .header-left a {
+  display: inline-block;
+  padding: 10px;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  margin-right: 10px;
+  font-family: 'Bebas Neue', sans-serif; 
+}
+
+  .header-left a:hover {
+  color: #00ff00;
+  }
+
+#homepage-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  height: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+
+.logo img {
+  height: 80px; /* adjust the height as needed */
+}
+
+body {
+  font-family: 'Bebas Neue', sans-serif;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: green;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  #sequencer {
+    font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 520px;
+    margin: 20px auto;
+  }
+  
+  .step-row {
+    display: flex;
+  }
+  
+  .step {
+    display: block;
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    border-radius: 25px; /* Make corners rounded */
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .step.active {
+    background-color: #c8c7c5;
+  }
+  
+  .step-kick.active {
+    background-color: gray;
+  }
+  
+  .step-snare.active {
+    background-color: #4cd964;
+  }
+  
+  .step-hihat.active {
+    background-color: gray;
+  }
+  .view-container {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.07);
+    height: 370px;
+    width: 950px;
+    border-radius: 11px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 20px;
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  #timeline {
+    background-color: green;
+    height: 20px;
+    margin: 60px 0;
+    position: relative;
+  }
+  
+  #progress {
+    background-color: #000;
+    color: white;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+  }
+
+  #controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  button {
+    font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    background-color: green;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 25px; /* Make corners rounded */
+  }
+  
+  
+  
+  button:hover {
+    background-color: #000;
+    color: white;
+  }
+  
+  
+  .arrangement-sequence {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .arrangement-step {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background-color: #c8c7c5;
+  }
+  
+  .loop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 10px;
+  }
+  
+  .loop-cell {
+    background-color: #ddd; /* Default background color for inactive loops */
+    width: 100px;
+    height: 100px;
+    /* Add styling for the loop cells */
+  }
+  
+  .loop-cell.active {
+    background-color: #00ff00; /* Background color for active loops */
+  }
+
+  #metronome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  #metronome-controls {
+    font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  #metronome-controls label {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #fff;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+  
+  #metronome-slider-container {
+    font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #tempo-slider {
+    width: 200px;
+    height: 5px;
+    background-color: white;
+    color: green;
+    border-radius: 2.5px;
+    appearance: none;
+    outline: none;
+  }
+  
+  #metronome-click:hover {
+    background-color: #c8c7c5;
+    color: black;
+  }
+  
+  #tempo-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  #tempo-slider::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  #tempo-label {
+    font-family: 'Bebas Neue', sans-serif;
+    color: green;
+    font-size: 18px;
+  }
+  
+  /* #measures {
+    position: absolute;
+    top: -30px;
+    left:
+    } */
+
+  #arrangement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+  
+  #arrangement h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: green;
+    margin-bottom: 10px;
+  }
+  
+  /* #arrangement-view {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  } */
+  
+  
+  .arrangement-step {
+    width: 20px;
+    height: 20px;
+  }
+    
+
+  #samples {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .sample {
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: green;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .sample:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  #search-input {
+    margin-right: 10px;
+  }
+  
+  .search-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  /* #arrangement-view {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    gap: 5px;
+  } */
+
+ 
+
+.measure {
+    width: 50%; /* This assumes 2 measures, adjust as needed */
+    height: 15px;
+    background-color: black;
+    float: left;
+} 
+
+.track {
+  grid-column: 1 / -1;
+  background-color: gray;
+  border: 1px solid green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* #playhead {
+    width: 2px;
+    height: 15%;
+    background-color: red;
+    position: absolute;
+    left: 0;
+}    */
+
+#arrangement-timeline {
+  display: flex;
+  grid-column: 1 / -1;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+}
+
+.tab:active, .tab:hover {
+  background-color: #666;
+}
+
+.view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#arrangement-view {
+  text-align: center; /* Centers inline or inline-block children horizontally */
+  height: 200px;  /* Adjust as needed */
+}
+
+.qwerty-button {
+  display: inline-block;  /* Keep as inline-block */
+  padding: 15px 30px;  /* Increase size by increasing padding */
+  font-size: 24px;  /* Increase text size */
+  border-radius: 25px;  /* Make corners rounded */
+  cursor: pointer;
+  text-decoration: none;  /* Remove underline if it's an <a> element */
+  margin-right: 5px;  /* Add space between the buttons */
+}
+
+/* Style by class */
+.assign-key-dropdown {
+  color: green;
+  background-color: black;
+  font-size: 16px;
+  border-radius: 25px;  /* Make corners rounded */
+  /* add more styles as you need */
+}
+
+
+
+.track {
+  display: flex;
+  align-items: center;  /* Aligns items vertically */
+  margin-bottom: 20px;
+  border: 1px solid black;
+  background-color: #333;
+  padding: 3px;
+  margin-top: 20px;
+  border-radius: 25px;
+}
+
+.track-title {
+  font-weight: bold;
+  margin-right: 10px;  /* Adds some space between the title and the bars */
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  border: 1px solid black;
+  padding: 5px;
+  flex-grow: 1; /* This will make the bars take up remaining space */
+  border-radius: 25px;
+}
+
+.beat {
+  width: 20%;  /* Adjusted to allow for four beats per bar */
+  height: 20px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 25px;
+  margin: 2px; /* Adding margin to provide some space between beats */
+}
+
+
+
+

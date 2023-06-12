@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+body {
+  background-color: #1e1e1e;
+  color: aliceblue;
+  font-family: 'IBM Plex Mono', monospace;  
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  cursor: grab;
+}
+
+#loader {
+  display: none;
+}
+
+.glitch {
+  animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+  /* Define glitch animation keyframes */
+}
+
+#scanlines {
+  background: url('./assets/rain-bg.gif') ;
+  
+}
+
+#infobar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #1e1e1e;
+  color: #fff;
+  font-size: 12px;
+  line-height: 30px;
+  z-index: 100;
+  border: 2px solid #666;
+}
+
+#infobar a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+#infomenu {
+  display: inline-block; 
+  color: #00ff00;
+  font-weight: bold;
+}
+
+#infopath {
+  display: inline-block; 
+  color: aliceblue;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+
+#page {
+  background-image: url('./assets/rain-bg.gif');
+  background-repeat: repeat;
+  background-size: cover;
+  padding-top: 30px;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'IBM Plex Mono', monospace;
+    cursor: auto;
+}
+
+.icon-line {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.button {
+  background-color: #80808000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.dIcon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+  background-size: cover;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+#window-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+
+.window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 300px;
+  background-color: #000000b3;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  z-index: 100;
+  cursor: auto;
+}
+
+.win-bar {
+  height: 30px;
+  background-color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  cursor: grab;
+}
+
+.win-close,
+.win-full,
+.win-min,
+.win-upd {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 5px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.win-close::before,
+.win-full::before,
+.win-min::before,
+.win-upd::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.win-close::before {
+  width: 8px;
+  height: 2px;
+  background-color: #ff5252;
+  transition: background-color 0.3s;
+}
+
+.win-close:hover::before {
+  background-color: #ff0000;
+}
+
+.win-full::before {
+  width: 8px;
+  height: 8px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transition: border-color 0.3s;
+}
+
+.win-full:hover::before {
+  border-color: #3b89ff;
+}
+
+.win-min::before {
+  width: 8px;
+  height: 2px;
+  background-color: #f0f2f1;
+  transition: background-color 0.3s;
+}
+
+.win-min:hover::before {
+  background-color: #cfe600;
+}
+
+.win-upd::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-top-color: transparent;
+}
+
+.win-upd:hover:before { 
+  border-color: #e68200;
+  transition: border-color 0.3s;
+}
+
+.win-bar button {
+  border: none;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  margin-right: 2px;
+  position: relative;
+  background-color: #4b4747;
+  border-radius: 2px;
+}
+
+
+.win-text {
+  color: white;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.win-content {
+  height: calc(100% - 30px);
+  padding: 10px;
+  color: #fff;
+  overflow: auto;
+}
+
+.win-frame {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.resizer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  cursor: nwse-resize;
+  background-color: #ccc;
+}
+
+#focus_retriever {
+  position: fixed;
+  top: 0;
+  left: -300px;
+}
+
+.minimized {
+  display: none;
+}
