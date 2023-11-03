@@ -4,7 +4,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.4/Pizzicato.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nexusui/2.0.1/NexusUI.js"></script>
 
 	<title>Cheap DAW</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -12,21 +12,24 @@
 <body>
 	<header>
 		<div class="header">
-			<div class="logo">
-				<img src="witchaudio.png" alt="Witch Audio Logo">
-			</div>
+			
 			<div class="header-left">
 				<h1>Witch Audio</h1> 
-				<a id="homepage-header" href="https://witchaudio.github.io/index.html">Home</a>
-				<a id="musicpage-header" href="https://witchaudio.github.io/music.html">Music</a>
-				<a id="gamespage-header" href="https://witchaudio.github.io/games.html">Games</a>
-				<a id="supportpage-header" href="https://witchaudio.github.io/support.html">Support</a>
+				
+				
 			</div>
 		</div>
 	</header>
+	<pre> 
+		welcome to my cheap DAW! Here's how to use it:
+		1. Search for a sample (powered by freesound.org)
+		2. Add to the sequencer or QWERTY keys using the dropdown next to each sample 
+		3. Click 'Sequencer' or 'QWERTY' to select which view you want to use
+		4. Use the play controls at the bottom to control your playback
+		5. Enjoy!
 
-	<h1>Cheap DAW</h1>
-
+		p.s: it's really buggy so... good luck :>
+		</pre>
 	<div id="sample-search" class="center">
 		<input type="text" id="search-input" placeholder="Search for samples...">
 		<button id="search-button">Search</button>
@@ -46,7 +49,7 @@
 	<div id="sequencer-arrangement-container">
 		<div class="tabs">
 			<button id="sequencer-tab" class="tab" onclick="switchTo('sequencer')">Sequencer</button>
-			<button id="arrangement-tab" class="tab" onclick="switchTo('arrangement')">Arrangement</button>
+			<button id="arrangement-tab" class="tab" onclick="switchTo('arrangement')">QWERTY</button>
 		</div>
 		
 		 
@@ -95,65 +98,6 @@
 				<button id="qwerty-button-5" class="qwerty-button">T</button>
 				<button id="qwerty-button-6" class="qwerty-button">Y</button>
 				
-				<div id="track-container">
-					<div id="track1" class="track">
-						<div class="track-title">Track 1</div>
-						<button class="track-solo" data-track="1" onclick="soloTrack(this.dataset.track)">Solo</button>
-						<button class="track-mute" data-track="1" onclick="muteTrack(this.dataset.track)">Mute</button>
-						<div class="sample-name"></div>
-						<div class="bar">
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						</div>
-						<div class="bar">
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						</div>
-					  </div>
-					  
-					  <div id="track2" class="track">
-						<div class="track-title">Track 2</div>
-						<button class="track-solo" data-track="2" onclick="soloTrack(this.dataset.track)">Solo</button>
-						<button class="track-mute" data-track="2" onclick="muteTrack(this.dataset.track)">Mute</button>
-						<div class="sample-name"></div>
-						<div class="bar">
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						</div>
-						<div class="bar">
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						</div>
-					  </div>
-					  
-					  <div id="track3" class="track">
-						<div class="track-title">Track 3</div>
-						<button class="track-solo" data-track="3" onclick="soloTrack(this.dataset.track)">Solo</button>
-						<button class="track-mute" data-track="3" onclick="muteTrack(this.dataset.track)">Mute</button>
-						<div class="sample-name"></div>
-						<div class="bar">
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						</div>
-						<div class="bar">
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						  <div class="beat"></div>
-						</div>
-					  </div>
-					  
-				</div>
 			</div>  
 	</div>
 	

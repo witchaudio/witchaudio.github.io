@@ -4,24 +4,25 @@
   align-items: center;
   background-color: #000;
   height: 100px;
-  }
+}
 
-  .header-left {
+.header-left {
   display: flex;
   align-items: center;
   margin-right: 10px;
-  }
+}
 
-  .header-left h1 {
-  font-family: 'Bebas Neue', sans-serif;  
-  color: #00ff00;
+.header-left h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #ebebeb;
   margin-right: 10px;
   font-size: 60px;
-  }
+}
 
-  .header-left h1:hover {
-      color: #fff;
-  }
+.header-left h1:hover {
+  color: #fff;
+}
+
 
   .header-left a {
   display: inline-block;
@@ -34,7 +35,7 @@
 }
 
   .header-left a:hover {
-  color: #00ff00;
+  color: #ebebeb;
   }
 
 #homepage-header {
@@ -72,7 +73,7 @@ body {
   
   h1 {
     font-family: 'Bebas Neue', sans-serif;
-    color: green;
+    color: rgb(228, 228, 228);
     text-align: center;
     margin: 20px 0;
   }
@@ -95,14 +96,14 @@ body {
     display: block;
     height: 50px;
     width: 50px;
-    background-color: green;
+    background-color: rgb(230, 234, 230);
     border-radius: 25px; /* Make corners rounded */
     margin: 5px;
     cursor: pointer;
   }
   
   .step.active {
-    background-color: #c8c7c5;
+    background-color: #f4a507;
   }
   
   .step-kick.active {
@@ -131,7 +132,7 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
   #timeline {
-    background-color: green;
+    background-color: rgb(243, 245, 243);
     height: 20px;
     margin: 60px 0;
     position: relative;
@@ -156,7 +157,7 @@ body {
   button {
     font-family: 'Bebas Neue', sans-serif;
     display: flex;
-    background-color: green;
+    background-color: rgb(234, 241, 234);
     color: #000;
     border: none;
     padding: 10px 20px;
@@ -200,7 +201,7 @@ body {
   }
   
   .loop-cell.active {
-    background-color: #00ff00; /* Background color for active loops */
+    background-color: #ffe600; /* Background color for active loops */
   }
 
   #metronome {
@@ -238,7 +239,7 @@ body {
     width: 200px;
     height: 5px;
     background-color: white;
-    color: green;
+    color: rgb(128, 100, 0);
     border-radius: 2.5px;
     appearance: none;
     outline: none;
@@ -254,7 +255,7 @@ body {
     appearance: none;
     width: 15px;
     height: 15px;
-    background-color: green;
+    background-color: rgb(245, 173, 6);
     border-radius: 50%;
     cursor: pointer;
   }
@@ -271,7 +272,7 @@ body {
   
   #tempo-label {
     font-family: 'Bebas Neue', sans-serif;
-    color: green;
+    color: rgb(251, 157, 5);
     font-size: 18px;
   }
   
@@ -290,7 +291,7 @@ body {
   
   #arrangement h2 {
     font-family: 'Bebas Neue', sans-serif;
-    color: green;
+    color: rgb(252, 253, 252);
     margin-bottom: 10px;
   }
   
@@ -315,7 +316,7 @@ body {
   
   .sample {
     font-family: 'Bebas Neue', sans-serif;
-    background-color: green;
+    background-color: rgb(248, 250, 248);
     color: #000;
     border: none;
     padding: 10px 20px;
@@ -365,7 +366,7 @@ body {
 .track {
   grid-column: 1 / -1;
   background-color: gray;
-  border: 1px solid green;
+  border: 1px solid rgb(250, 250, 250);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -400,7 +401,7 @@ body {
 }
 
 .tab:active, .tab:hover {
-  background-color: #666;
+  color: rgb(249, 196, 3)28, 100, 0;
 }
 
 .view {
@@ -426,8 +427,8 @@ body {
 
 /* Style by class */
 .assign-key-dropdown {
-  color: green;
-  background-color: black;
+  color: rgb(249, 196, 3)28, 100, 0;
+  background-color: white;
   font-size: 16px;
   border-radius: 25px;  /* Make corners rounded */
   /* add more styles as you need */
