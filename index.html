@@ -10,90 +10,100 @@
     <title> witch audio </title>
     <link rel="icon" href="./assets/witch2.jpg">
     <link rel="stylesheet" type="text/css" href="main.css">
-    
+
+    <!-- Include Vue.js from CDN and jQuery-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="window.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+    
 </head>
- 
+
 <body>
-    <div id="loader" style="display:none;">
-        <h1 class="glitch" data-text="waOS">Witch Audio</h1>
-        <h2 class="glitch" data-text="text">Placeholder text</h2>
-    </div>
-    
-    <div id="scanlines"></div>
-    
-    <div id="infobar">
-        <div id="infomenu">Witch Audio:/ </div>
-        <div id="infopath">[ C:/V1.0.0/witch-audio/||\||\ ]</div>
-    </div>
-    
-    <div id="page" style="background-image: url('./assets/rain-bg.gif');">
-        <div class="icon-line" id="icon-line-0">
-            <div class="dLink" id="dLink-About">
-                <button class="button">
-                    <div class="dIcon" style="background-image: url('./assets/trash-empty-svgrepo-com.svg' );"></div>
-                    About
-                </button>
-            </div>
-            <div class="dLink" id="dLink-Blog">
-                <button class="button">
-                    <div class="dIcon" style="background-image: url('./assets/audio.svg' );"></div>
-                    DAW
-                </button>
-            </div>
-            <div class="dLink" id="dLink-Login">
-                <button class="button">
-                    <div class="dIcon" style="background-image: url('./assets/mouse-svgrepo-com.svg' );"></div>
-                    Notes
-                </button>
-            </div>
-            <div class="dLink" id="dLink-Music">
-                <button class="button">
-                    <div class="dIcon" style="background-image: url('./assets/input-gaming-svgrepo-com.svg' );"></div>
-                    Game
-                </button>
-            </div>
-            <div class="dLink" id="dLink-Tarot">
-                <button class="button">
-                    <div class="dIcon" style="background-image: url('./assets/tarot.png' );"></div>
-                    Tarot
-                </button>
-            </div>
-        </div> <!-- LINE 0 -->
-        <div class="icon-line" id="icon-line-1">
-            <div class="dLink"></div>
-        </div> <!-- LINE 1 -->
-    </div>
-    
-    <div id="window-container">
-    <div class="window ui-draggable" id="win-id-0">
-        <div class="win-bar">
-            <button class="win-close button"></button>
-            <button class="win-full button"></button>
-            <button class="win-min button"></button>
-            <button class="win-upd button"></button>
-            <div class="win-text">V1.0.0 witch audio |\||\</div>
+    <div id="app">
+        <div id="loader" v-show="!loaded">
+            <h1 class="glitch" data-text="waOS">Witch Audio</h1>
+            <h2 class="glitch" data-text="text">Placeholder text</h2>
         </div>
-        <div class="win-content">
-            <iframe class="win-frame" id="win-frame-id-" src="release-notes.html?id=0"></iframe>
+
+        <div id="scanlines"></div>
+
+        <div id="infobar">
+            <div id="infomenu">Witch Audio:/ </div>
+            <div id="infopath">[ C:/V1.0.0/witch-audio/||\||\ ]</div>
         </div>
-        <div class="resizer"></div>
+
+        <div id="page" style="background-image: url('./assets/rain-city.gif');">
+            <div class="icon-line" id="icon-line-0">
+                <div class="dLink" id="dLink-About">
+                    <button class="button" @click="navigateTo('about.html')">
+                        <div class="dIcon" style="background-image: url('./assets/trash-empty-svgrepo-com.svg' );"></div>
+                        About
+                    </button>
+                </div>
+                <div class="dLink" id="dLink-Blog">
+                    <button class="button" @click="navigateTo('daw/index.html')">
+                        <div class="dIcon" style="background-image: url('./assets/audio.svg' );"></div>
+                        DAW
+                    </button>
+                </div>
+                <div class="dLink" id="dLink-Login">
+                    <button class="button" @click="navigateTo('release-notes.html')">
+                        <div class="dIcon" style="background-image: url('./assets/mouse-svgrepo-com.svg' );"></div>
+                        Notes
+                    </button>
+                </div>
+                <div class="dLink" id="dLink-Music">
+                    <button class="button" @click="navigateTo('survive-game.html')">
+                        <div class="dIcon" style="background-image: url('./assets/input-gaming-svgrepo-com.svg' );"></div>
+                        Game
+                    </button>
+                </div>
+                <div class="dLink" id="dLink-Tarot">
+                    <button class="button" @click="navigateTo('https://witchaudio.github.io/cosmic-fortunes/')">
+                        <div class="dIcon" style="background-image: url('./assets/tarot.png' );"></div>
+                        Tarot
+                    </button>
+                </div>
+            </div> <!-- LINE 0 -->
+            <div class="icon-line" id="icon-line-1">
+                <!-- Add any other elements as needed -->
+            </div> <!-- LINE 1 -->
+        </div>
+
+        <div id="window-container">
+            <div
+            v-for="window in windows"
+            :key="window.id"
+            class="window"
+            :class="{ 'ui-draggable': activeWindow === window.id }"
+            :id="window.id"
+            v-on:mousemove="handleDrag"
+            v-on:mouseup="stopDrag"
+            >
+              <div class="win-bar" v-on:mousedown="startDrag(window.id)">
+                <button class="win-close button" @click="closeWindow(window.id)"></button>
+                <button class="win-full button" @click="maximizeWindow(window.id)"></button>
+                <button class="win-min button" @click="minimizeWindow(window.id)"></button>
+                <button class="win-upd button" @click="refreshWindowContent(window.id)"></button>
+                <div class="win-text">V1.0.0 witch audio |\||\</div>
+              </div>
+              <div class="win-content">
+                <iframe class="win-frame" :src="window.url"></iframe>
+              </div>
+              <div class="resizer" @mousedown="startResize($event, window.id)"></div>
+ <!-- Resizer element -->
+            </div>
     </div>
-</div>
-    
+
     <!-------------------------------------TECH-------------------------------------------->
-  
-    <div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div>
-   
-    <script>
-        $(document).ready(function() {
-            $('button[data-href]').click(function() {
-                window.location.href = $(this).data('href');
-            });
-        });
-    </script>
+
+    <div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text"
+            value="" id="focus_retriever" readonly="true"></div>
+
+    <script src="app.js"></script>
+
 </body>
+
 </html>
