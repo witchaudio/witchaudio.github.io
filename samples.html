@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Pack Downloads</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #fbfbfb;
+        }
+        h1 {
+            color: #ff8c00;
+        }
+        .card {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #ff8c00;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            width: 300px;
+            display: inline-block;
+            text-align: center;
+        }
+        .card a {
+            text-decoration: none;
+            color: #ff8c00;
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sample Packs</h1>
+
+    <div id="password-input">
+        <label for="password">Enter secret: </label>
+        <input type="password" id="password" />
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="sample-packs" style="display: none;">
+        <div class="card">
+            <h2>Let Me Go</h2>
+            <p>Dirty Vox Sample Pack</p>
+            <a href="sample_pack_1.zip" download>Download</a>
+        </div>
+
+        <div class="card">
+            <h2>Sample Pack 2</h2>
+            <p>Description of Sample Pack 2.</p>
+            <a href="sample_pack_2.zip" download>Download</a>
+        </div>
+
+        <!-- Add more cards for additional sample packs as needed -->
+    </div>
+
+    <script>
+        function checkPassword() {
+            const passwordInput = document.getElementById("password");
+            const password = passwordInput.value;
+
+            // Replace 'your_password_here' with your actual password
+            if (password === "sexysample") {
+                document.getElementById("password-input").style.display = "none";
+                document.getElementById("sample-packs").style.display = "block";
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>
