@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A place for my weird ideas to exist">
     <meta name="keywords" content="personal, lo-fi, programming, art">
     <meta name="author" content="witch-audio">
-    <title> witch audio </title>
+    <title>Witch Audio</title>
     <link rel="icon" href="./assets/witch2.jpg">
     <link rel="stylesheet" type="text/css" href="main.css">
 
     <!-- Include Vue.js from CDN and jQuery-->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-
-    
 </head>
-
 <body>
     <div id="app">
         <div id="loader" v-show="!loaded">
@@ -30,7 +23,7 @@
         <div id="scanlines"></div>
 
         <div id="infobar">
-            <div id="infomenu">Witch Audio:/ </div>
+            <div id="infomenu">Witch Audio:/</div>
             <div id="infopath">[ C:/V1.0.0/witch-audio/||\||\ ]</div>
         </div>
 
@@ -38,32 +31,32 @@
             <div class="icon-line" id="icon-line-0">
                 <div class="dLink" id="dLink-About">
                     <button class="button" @click="navigateTo('about.html')">
-                        <div class="dIcon" style="background-image: url('./assets/trash-empty-svgrepo-com.svg' );"></div>
+                        <div class="dIcon" style="background-image: url('./assets/trash-empty-svgrepo-com.svg');"></div>
                         About
                     </button>
                 </div>
                 <div class="dLink" id="dLink-Blog">
                     <button class="button" @click="navigateTo('daw/index.html')">
-                        <div class="dIcon" style="background-image: url('./assets/audio.svg' );"></div>
+                        <div class="dIcon" style="background-image: url('./assets/audio.svg');"></div>
                         DAW
-                    </button>
-                </div>
-                <div class="dLink" id="dLink-Login">
-                    <button class="button" @click="navigateTo('release-notes.html')">
-                        <div class="dIcon" style="background-image: url('./assets/mouse-svgrepo-com.svg' );"></div>
-                        Notes
                     </button>
                 </div>
                 <div class="dLink" id="dLink-Music">
                     <button class="button" @click="navigateTo('survive-game.html')">
-                        <div class="dIcon" style="background-image: url('./assets/input-gaming-svgrepo-com.svg' );"></div>
+                        <div class="dIcon" style="background-image: url('./assets/input-gaming-svgrepo-com.svg');"></div>
                         Game
                     </button>
                 </div>
                 <div class="dLink" id="dLink-Tarot">
                     <button class="button" @click="navigateTo('https://witchaudio.github.io/cosmic-fortunes/')">
-                        <div class="dIcon" style="background-image: url('./assets/tarot.png' );"></div>
+                        <div class="dIcon" style="background-image: url('./assets/tarot.png');"></div>
                         Tarot
+                    </button>
+                </div>
+                <div class="dLink" id="dLink-Samples">
+                    <button class="button" @click="navigateTo('samples.html')">
+                        <div class="dIcon" style="background-image: url('./assets/floppy.svg');"></div>
+                        Samples
                     </button>
                 </div>
             </div> <!-- LINE 0 -->
@@ -74,36 +67,36 @@
 
         <div id="window-container">
             <div
-            v-for="window in windows"
-            :key="window.id"
-            class="window"
-            :class="{ 'ui-draggable': activeWindow === window.id }"
-            :id="window.id"
-            v-on:mousemove="handleDrag"
-            v-on:mouseup="stopDrag"
+                v-for="window in windows"
+                :key="window.id"
+                class="window"
+                :class="{ 'ui-draggable': activeWindow === window.id }"
+                :id="window.id"
+                v-on:mousemove="handleDrag"
+                v-on:mouseup="stopDrag"
             >
-              <div class="win-bar" v-on:mousedown="startDrag(window.id)">
-                <button class="win-close button" @click="closeWindow(window.id)"></button>
-                <button class="win-full button" @click="maximizeWindow(window.id)"></button>
-                <button class="win-min button" @click="minimizeWindow(window.id)"></button>
-                <button class="win-upd button" @click="refreshWindowContent(window.id)"></button>
-                <div class="win-text">V1.0.0 witch audio |\||\</div>
-              </div>
-              <div class="win-content">
-                <iframe class="win-frame" :src="window.url"></iframe>
-              </div>
-              <div class="resizer" @mousedown="startResize($event, window.id)"></div>
- <!-- Resizer element -->
+                <div class="win-bar" v-on:mousedown="startDrag(window.id)">
+                    <button class="win-close button" @click="closeWindow(window.id)"></button>
+                    <button class="win-full button" @click="maximizeWindow(window.id)"></button>
+                    <button class="win-min button" @click="minimizeWindow(window.id)"></button>
+                    <button class="win-upd button" @click="refreshWindowContent(window.id)"></button>
+                    <div class="win-text">V1.0.0 witch audio |\||\</div>
+                </div>
+                <div class="win-content">
+                    <iframe class="win-frame" :src="window.url"></iframe>
+                </div>
+                <div class="resizer" @mousedown="startResize($event, window.id)"></div>
+                <!-- Resizer element -->
             </div>
+        </div>
+
+        <!-- TECH -->
+        <div style="position: fixed; top: 0; left: 0; overflow: hidden;">
+            <input style="position: absolute; left: -300px;" type="text" value="" id="focus_retriever" readonly="true">
+        </div>
+
     </div>
 
-    <!-------------------------------------TECH-------------------------------------------->
-
-    <div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text"
-            value="" id="focus_retriever" readonly="true"></div>
-
     <script src="app.js"></script>
-
 </body>
-
 </html>
