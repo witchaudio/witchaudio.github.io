@@ -1,0 +1,179 @@
+body, html {
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #fbfbfb;
+    height: 100%;
+  margin: 0;
+}
+
+h1 {
+    color: #ff8c00;
+}
+
+#sample-packs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Add this to allow wrapping for smaller screens */
+}
+
+#carousel-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center-align children horizontally */
+    justify-content: center; /* Center-align children vertically */
+  }
+  
+  #carousel {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap; /* Prevent wrapping of items */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+  }
+
+  .carousel-navigation {
+    text-align: center; /* Center the buttons */
+    margin-top: 20px; /* Add some space above the buttons */
+    width: 100%; /* Ensure the div takes full width */
+  }
+  #prev, #next {
+    padding: 10px 15px; /* Padding inside the button */
+    margin: 0 10px; /* Add some space between the buttons */
+    border: 2px solid #ff8c00; /* Orange border to match the theme */
+    border-radius: 5px; /* Rounded corners for the button */
+    background-color: rgba(255, 140, 0, 0.8); /* Less transparent orange background */
+    color: #ffffff; /* White text to stand out */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Uppercase text for stylistic preference */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s; /* Transition for hover effects */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Allows the use of margin and padding */
+}
+
+#prev:hover, #next:hover {
+    background-color: #ff8c00; /* Solid orange background on hover */
+    color: #000000; /* Change text color to black on hover */
+}
+
+
+
+.card {
+    color: #fff;
+    border: 1px solid #ff8c00;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    width: 200px; /* Adjusted width for smaller card */
+    height: 300px; /* Adjusted height for smaller card */
+    text-align: center;
+    transition: transform 0.2s ease-in-out; /* Add hover transition */
+    position: relative; /* This makes it a reference for absolute positioning */
+    overflow: hidden; /* Ensures that the image doesn't overflow the card's rounded corners */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Add hover effect */
+}
+
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* This will make the image span the full width of the card */
+    height: 100%; /* This will make the image span the full height of the card */
+    background-size: cover;
+    background-position: center;
+    z-index: 1; /* This ensures that the image stays behind the text */
+}
+
+.card-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; /* Added to ensure the div spans the entire card */
+    bottom: 0; /* Added to ensure the div spans the entire card */
+    display: flex;
+    align-items: center; /* This centers the text vertically */
+    justify-content: center; /* This centers the text horizontally */
+    flex-direction: column;
+    color: white;
+    padding: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.5);
+    z-index: 2; /* Ensure the text is above the image */
+}
+
+
+/* Style for the download button inside the cards */
+.download-button {
+    padding: 10px 15px; /* Padding inside the button */
+    margin: 0 10px; /* Add some space between the buttons */
+    border: 2px solid #ff8c00; /* Orange border to match the theme */
+    border-radius: 5px; /* Rounded corners for the button */
+    background-color: rgba(255, 140, 0, 0.8); /* Less transparent orange background */
+    color: #ffffff; /* White text to stand out */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Uppercase text for stylistic preference */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s; /* Transition for hover effects */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Allows the use of margin and padding */
+}
+
+/* Hover effect for the download button */
+.download-button:hover {
+    background-color: #ff8c00; /* Orange background on hover */
+    color: #000000; /* Change text color to black on hover */
+}
+
+
+#password-container {
+    display: none; /* Hidden by default; will be made visible when needed */
+    width: 80%; /* Adjusted to take less width of the container */
+    max-width: 400px; /* Maximum width to prevent it from being too wide on larger screens */
+    padding: 20px; /* Padding for aesthetic spacing */
+    box-sizing: border-box; /* Include padding and border in the width and height */
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center text */
+    margin-top: 20px; /* Add some space above the password container */
+    margin-bottom: 20px; /* Add some space below the password container */
+    margin-left: auto; /* Center the container */
+    margin-right: auto; /* Center the container */
+    display: flex; /* Use flexbox to center children */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center-align children horizontally */
+    justify-content: center; /* Center-align children vertically */
+}
+
+
+/* Style for the password input field */
+#password-container input {
+    width: 50%; /* Reduced width for the input field */
+    padding: 10px; /* Padding for the input field */
+    margin-bottom: 10px; /* Space between input field and button */
+    margin: 0 auto; /* Center the input field */
+    border: 1px solid #fff; /* White border for the input field */
+    border-radius: 3px; /* Slightly rounded corners for the input field */
+    color: #fff; /* White text color */
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+}
+
+
+/* Style for the submit button */
+#password-container button {
+    padding: 10px 20px; /* Padding for the button */
+    border: none; /* No border for the button */
+    border-radius: 3px; /* Slightly rounded corners for the button */
+    color: #fff; /* White text color */
+    background-color: #ff8c00; /* Background color to match the theme */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Hover effect for the button */
+#password-container button:hover {
+    background-color: #e67e00; /* Darker shade for hover effect */
+}
+

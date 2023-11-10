@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Packs</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Sample Packs</h1>
+
+    <p>Select the sample pack you want to download and enter the password. </p>
+    <div id="carousel-container">
+        <div id="carousel">
+            <div class="card">
+                <div class="card-image">
+                    <div class="card-overlay"></div>
+                    <h2>Let Me Go</h2>
+                    <p>Dirty Vox Sample Pack</p>
+                    <a href="#" class="download-button" onclick="showPasswordInput('https://drive.google.com/drive/folders/1FoBlSiKNLUIaMlBGYxPnNDLs7A1abtsW?usp=sharing')">Download</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-image">
+                    <div class="card-overlay"></div>
+                    <h2>Ocean</h2>
+                    <p>Full Pop Topline</p>
+                    <a href="#" class="download-button" onclick="showPasswordInput('https://drive.google.com/drive/folders/1EaK-6FBrKt9Ma0hEZKQV7w1c7-rgCqxY?usp=sharing')">Download</a>
+                </div>
+            </div>
+            <!-- More cards can be added here -->
+        </div>
+    </div>
+    
+        <!-- Navigation buttons moved outside the #carousel div -->
+        <div class="carousel-navigation">
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+        </div>
+    </div>
+    <div id="password-container"></div>
+    <script src="app.js"></script>
+</body>
+</html>
